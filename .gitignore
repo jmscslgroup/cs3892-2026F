@@ -210,4 +210,5 @@ __marimo__/
 
 # Matlab and simulink
 slprj/
+*.autosave
 *.asv
