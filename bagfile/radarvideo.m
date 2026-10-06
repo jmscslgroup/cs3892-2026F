@@ -46,16 +46,13 @@ tracka15 = timeseries(tracka15_bag,'Point.X','Point.Y');
 
 % create the figture
 figure
-title('Video playback of radar signatures in (x,y) of 1/20 of all tracks a0-15')
-xlabel('Distance (x) in m')
-ylabel('Distance (y) in m')
 
 % start partway through
 starttime = round(length(tracka0.Data(:))/4);
 % iterate over from starttime, choosing every 5 elements, and end at least
 % one full cycle early in case all data are not the same len
 for jj=starttime:5:(length(tracka0.Data(:))-20)
-    scatter(tracka0.Data(jj,1),tracka0.Data(jj,2),'r');
+    hA = scatter(tracka0.Data(jj,1),tracka0.Data(jj,2),'r');
     % necessary to put on a hold so that all the data will show up
     hold on
     scatter(tracka1.Data(jj,1),tracka1.Data(jj,2),'r');
@@ -66,7 +63,7 @@ for jj=starttime:5:(length(tracka0.Data(:))-20)
     scatter(tracka6.Data(jj,1),tracka6.Data(jj,2),'r');
     scatter(tracka7.Data(jj,1),tracka7.Data(jj,2),'r');
     % second set
-    scatter(tracka8.Data(jj,1),tracka8.Data(jj,2),'b');
+    hB = scatter(tracka8.Data(jj,1),tracka8.Data(jj,2),'b');
     scatter(tracka9.Data(jj,1),tracka9.Data(jj,2),'b');
     scatter(tracka10.Data(jj,1),tracka10.Data(jj,2),'b');
     scatter(tracka11.Data(jj,1),tracka11.Data(jj,2),'b');
@@ -74,11 +71,15 @@ for jj=starttime:5:(length(tracka0.Data(:))-20)
     scatter(tracka13.Data(jj,1),tracka13.Data(jj,2),'b');
     scatter(tracka14.Data(jj,1),tracka14.Data(jj,2),'b');
     scatter(tracka15.Data(jj,1),tracka15.Data(jj,2),'b');
-    % setting limits on axis labels to help make more clear
+    % equalize lengths, then fix the limits so the view does not jump
+    axis equal
     xlim([0 300])
     ylim([-50 50])
-    % equalize lengths
-    axis equal
+    % labels must be redrawn each frame, since hold off resets the axes
+    title('Video playback of radar signatures in (x,y) of tracks a0-a15')
+    xlabel('Distance (x) in m')
+    ylabel('Distance (y) in m')
+    legend([hA hB],{'tracks a0-a7','tracks a8-a15'})
     % waits short time to visualize the video
     pause(0.05)
     % resets the figure to clear previous values plotted

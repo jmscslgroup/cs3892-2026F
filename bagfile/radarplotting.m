@@ -47,6 +47,7 @@ scatter(tracka4.Data(:,1),tracka4.Data(:,2));
 scatter(tracka5.Data(:,1),tracka5.Data(:,2));
 scatter(tracka6.Data(:,1),tracka6.Data(:,2));
 scatter(tracka7.Data(:,1),tracka7.Data(:,2));
+legend({'a0','a1','a2','a3','a4','a5','a6','a7'},'Location','eastoutside')
 title('Radar signatures in (x,y) of tracks a0-a7')
 xlabel('Distance (x) in m')
 ylabel('Distance (y) in m')
@@ -82,6 +83,7 @@ scatter(tracka12.Data(:,1),tracka12.Data(:,2));
 scatter(tracka13.Data(:,1),tracka13.Data(:,2));
 scatter(tracka14.Data(:,1),tracka14.Data(:,2));
 scatter(tracka15.Data(:,1),tracka15.Data(:,2));
+legend({'a8','a9','a10','a11','a12','a13','a14','a15'},'Location','eastoutside')
 title('Radar signatures in (x,y) of tracks a8-a15')
 xlabel('Distance (x) in m')
 ylabel('Distance (y) in m')
@@ -91,7 +93,7 @@ fontsize(gcf,"scale",2)
 %% plot some of all of them on ONE plot
 figure
 hold on
-scatter(tracka0.Data(1:20:end,1),tracka0.Data(1:20:end,2),'r');
+hA = scatter(tracka0.Data(1:20:end,1),tracka0.Data(1:20:end,2),'r');
 scatter(tracka1.Data(1:20:end,1),tracka1.Data(1:20:end,2),'r');
 scatter(tracka2.Data(1:20:end,1),tracka2.Data(1:20:end,2),'r');
 scatter(tracka3.Data(1:20:end,1),tracka3.Data(1:20:end,2),'r');
@@ -100,7 +102,7 @@ scatter(tracka5.Data(1:20:end,1),tracka5.Data(1:20:end,2),'r');
 scatter(tracka6.Data(1:20:end,1),tracka6.Data(1:20:end,2),'r');
 scatter(tracka7.Data(1:20:end,1),tracka7.Data(1:20:end,2),'r');
 % second set
-scatter(tracka8.Data(1:20:end,1),tracka8.Data(1:20:end,2),'b');
+hB = scatter(tracka8.Data(1:20:end,1),tracka8.Data(1:20:end,2),'b');
 scatter(tracka9.Data(1:20:end,1),tracka9.Data(1:20:end,2),'b');
 scatter(tracka10.Data(1:20:end,1),tracka10.Data(1:20:end,2),'b');
 scatter(tracka11.Data(1:20:end,1),tracka11.Data(1:20:end,2),'b');
@@ -108,6 +110,7 @@ scatter(tracka12.Data(1:20:end,1),tracka12.Data(1:20:end,2),'b');
 scatter(tracka13.Data(1:20:end,1),tracka13.Data(1:20:end,2),'b');
 scatter(tracka14.Data(1:20:end,1),tracka14.Data(1:20:end,2),'b');
 scatter(tracka15.Data(1:20:end,1),tracka15.Data(1:20:end,2),'b');
+legend([hA hB],{'tracks a0-a7','tracks a8-a15'})
 title('Radar signatures in (x,y) of 1/20 of all tracks a0-15')
 xlabel('Distance (x) in m')
 ylabel('Distance (y) in m')

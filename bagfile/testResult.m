@@ -34,8 +34,8 @@ ego_odom_bag = select(bag,'Topic','/egocar/odom_x');
 ego_odom = timeseries(ego_odom_bag);
 
 
-% time t0
-t0 = vel_x.Time(1);
+% time t0: start of the bag file, so the x-axis shows elapsed seconds
+t0 = bag.StartTime;
 
 %% plot the results
 figure
@@ -47,9 +47,8 @@ scatter(rel_vel.Time(:)-t0,rel_vel.Data(:),marker='.');
 scatter(lead_dist.Time(:)-t0,lead_dist.Data(:),marker='.')
 legend({'vel x (m/s)','rel vel (m/s)','lead dist (m)'})
 ylabel('meters or meters/second')
-xlabel('Unix time in GMT')
+xlabel('Time since start of bag file (s)')
 title('Speed, Relative Velocity, and Relative Distance')
-axis equal
 fontsize(gcf,"scale",2.5)
 
 %% plot the odometry
@@ -59,9 +58,8 @@ scatter(lead_odom.Time(:)-t0,lead_odom.Data(:),marker='.');
 scatter(ego_odom.Time(:)-t0,ego_odom.Data(:),marker='.')
 legend({'lead odom (m)','ego odom (m)'})
 ylabel('meters')
-xlabel('Unix time in GMT')
-title('Speed, Relative Velocity, and Relative Distance')
-axis equal
+xlabel('Time since start of bag file (s)')
+title('Distance Traveled (Odometry)')
 fontsize(gcf,"scale",2.5)
 
 % pause
@@ -73,4 +71,4 @@ replay_two_cars_ts({lead_odom, ego_odom}, 'Labels', {'Lead Car', ...
     'Window', 80, ...
     'WindowMax', 120, ...
     'Signals', {lead_vel_x, vel_x, rel_vel, lead_dist, cmd_accel}, ...
-    'SignalNames', {'lead\_vel\_x', 'vel\_x', 'rel\_vel', 'lead\_dist', 'cmd\_accel'})
+    'SignalNames', {'lead\_vel\_x (m/s)', 'vel\_x (m/s)', 'rel\_vel (m/s)', 'lead\_dist (m)', 'cmd\_accel (m/s^2)'})

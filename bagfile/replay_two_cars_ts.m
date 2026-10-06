@@ -1,5 +1,5 @@
-function replay_cars_ts(cars, varargin)
-% replay_cars_ts  Animate multiple cars from their odometry time series.
+function replay_two_cars_ts(cars, varargin)
+% replay_two_cars_ts  Animate multiple cars from their odometry time series.
 %   cars : cell array of car data (each one may be timeseries, timetable, Nx2, or struct with .t and .x)
 %
 % Name-Value options:
@@ -16,7 +16,7 @@ function replay_cars_ts(cars, varargin)
 %   'SignalHeight': height fraction for signal axes (0.15–0.45), default 0.25
 %
 % Example:
-%   replay_cars_ts({car1,car2,car3}, 'Ego', 2, 'Labels', {'Lead','Ego','Follower'});
+%   replay_two_cars_ts({car1,car2,car3}, 'Ego', 2, 'Labels', {'Lead','Ego','Follower'});
 
 % ---------- Parse inputs ----------
 p = inputParser;
@@ -137,7 +137,7 @@ if numSig > 0
         plot(axSig, tt, sigY(i,:), 'LineWidth',1.0);
     end
     legend(axSig,sigNames,'Location','eastoutside');
-    xlabel(axSig,'Time [s]'); ylabel(axSig,'Value');
+    xlabel(axSig,'Time [s]'); ylabel(axSig,'Value (units in legend)');
     try
         tc = xline(axSig, tt(1), '--', 'Cursor', 'LabelOrientation','horizontal');
     catch
